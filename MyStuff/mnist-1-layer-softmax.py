@@ -14,8 +14,6 @@ X = tf.placeholder(tf.float32, [None, 784])
 W = tf.Variable(tf.zeros([784, 10]))
 b = tf.Variable(tf.zeros([10]))
 
-init = tf.initialize_all_variables()
-
 # model
 Y = tf.nn.softmax(tf.matmul(X, W) + b)
 
@@ -32,6 +30,7 @@ accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
 optimizer = tf.train.GradientDescentOptimizer(0.003)
 train_step = optimizer.minimize(cross_entropy)
 
+init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 
